@@ -19,6 +19,8 @@
      SUB_ASSIGN=272,
      MUL_ASSIGN=273,
      DIV_ASSIGN=274,
+     NEG = 275 ,
+     FOR = 277,
    };
 #endif
 

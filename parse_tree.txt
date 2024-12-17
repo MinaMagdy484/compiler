@@ -1,28 +1,403 @@
-	declarations: empty
-declaration: INT VAR
-	declarations: declarations declaration
-	statements empty
-	assignment: VAR += NUM;
-	statement: assignment
-	statements: statements statement
-	expression: VAR
-	Print Statement
-	statements: statements statement
-	expression: NUM
-	assignment: VAR = expression;
-	statement: assignment
-	statements: statements statement
-	assignment: VAR *= NUM;
-	statement: assignment
-	statements: statements statement
-	expression: VAR
-	Print Statement
-	statements: statements statement
-	expression: VAR
-	expression: NUM
-	expression: expression * expression
-	expression: VAR
-	expression: expression + expression
-	Print Statement
-	statements: statements statement
-Program
+ / declarations: empty
+declaration
+ / int variable
+ /  / =
+      Var --> 0
+ / declarations: declarations declaration
+ / statements empty
+expr
+ / =
+  VAR --> 0
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  NUM --> 10
+Multiplication Expression
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  NUM --> 10
+Addition Expression
+Parenthesized Expression
+Multiplication Expression
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 2000
+ / Print Statement
+ / statements: statements statement
+Assignment
+ / *=
+ /  / VAR
+    NUM --> 10
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 20000
+ / Print Statement
+ / statements: statements statement
+Decrement variable
+ / VAR
+  VAR --> 19999
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 19999
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 19999
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 19999
+ / Print Statement
+ / statements: statements statement
+increment variable
+ / VAR
+  VAR --> 20000
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 20000
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  NUM --> 20
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  NUM --> 2
+Multiplication Expression
+expr
+ / =
+  VAR --> 20
+Addition Expression
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 0
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  NUM --> 20
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  VAR --> 20
+Equal Comparison
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  VAR --> 20
+Equal Comparison
+Parenthesized Expression
+Logical NOT Expression
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  VAR --> 20
+Not Equal Comparison
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  VAR --> 20
+Greater Than Comparison
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 10
+expr
+ / =
+  VAR --> 20
+Less Than Comparison
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+Assignment
+ / *=
+ /  / VAR
+    NUM --> 10
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 100
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+Assignment
+ / -=
+ /  / VAR
+    NUM --> 10
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 0
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+Assignment
+ / +=
+ /  / VAR
+    NUM --> 10
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 20
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 10
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+Assignment
+ / /=
+ /  / VAR
+    NUM --> 10
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 1
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 15
+expr
+ / =
+  NUM --> 6
+Modulus Expression
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 3
+expr
+ / =
+  NUM --> 5
+Exponentiation Expression
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  NUM --> 3
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  NUM --> 5
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+expr
+ / =
+  VAR --> 3
+expr
+ / =
+  VAR --> 5
+Exponentiation Expression
+ / Print Statement
+ / statements: statements statement
+expr
+ / =
+  VAR --> 3
+expr
+ / =
+  VAR --> 5
+Greater Than Comparison
+ / statements empty
+expr
+ / =
+  NUM --> 11
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+IF
+ / Condition
+ /  / Expression
+ / Body
+ /  / Statements
+IF Condition: FALSE
+ / statement--> condition
+ / statements: statements statement
+expr
+ / =
+  VAR --> 11
+expr
+ / =
+  VAR --> 5
+Greater Than Comparison
+ / statements empty
+expr
+ / =
+  NUM --> 11
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+ / statements empty
+expr
+ / =
+  NUM --> 15
+Assignment
+ / VAR
+ / =
+ / Expression
+ / statement--> assignment
+ / statements: statements statement
+IF-ELSE
+ / Condition
+ /  / Expression
+ / IF ELSE Condition: TRUE
+ /  / statement--> condition
+ /  / statements: statements statement
+ / expr
+ /  / =
+    NUM --> 10
+ / Assignment
+ /  / VAR
+ /  / =
+ /  / Expression
+ /  / statement--> assignment
+ / 
+WHILE Loop Found
+
+ /  / ITERATIONS
+      iteration num --> 5
+      iteration num --> 6
+      iteration num --> 7
+      iteration num --> 8
+      iteration num --> 9
+ /  / statement--> condition
+ /  / statements: statements statement
+ / Program
+ /  / Main Block

@@ -1,11 +1,113 @@
 main {
-    int a;
 
-a+= 15 ;
-print (a);
-a=10;
+#declare variable
+    int aaa1;
 
-a *=10;
-print(a);
-print (a*23+a);
+#print variable
+print(aaa1);
+
+#assign value to variable
+aaa1=10;
+
+
+print(aaa1);
+
+#excute the expression and assign the value to variable
+aaa2=aaa1*10*(aaa1+10);
+
+
+print (aaa2);
+
+#update variable with multiplication with 10
+aaa2 *=10;
+
+print(aaa2);
+
+#decrement the value of the variable
+aaa2 -- ;
+print(aaa2);
+#print the negative of the variable
+print (-aaa2);
+print(aaa2);
+
+#increment the value of the variable
+aaa2 ++ ;
+print(aaa2);
+
+aaa1 = 10 ;
+aaa2 = 20 ;
+
+aaa3 = aaa1 *2 + -aaa2 ;
+
+print (aaa3);
+
+aaa1 = 10 ;
+aaa2 = 20 ;
+
+#print logical expression as 1 or 0 value
+
+
+print (aaa1 == aaa2 );
+
+#after make == make not for it 
+print (!(aaa1 == aaa2) );
+
+print (aaa1 != aaa2 );
+
+print (aaa1 > aaa2 );
+
+print (aaa1 < aaa2 );
+
+
+b1 = 10 ;
+b1  *  = 10 ;
+print (b1) ;
+
+b1 = 10 ;
+b1 -= 10 ;
+print (b1) ;
+
+b1 = 10 ;
+b1 += 10 ;
+print (b1) ;
+
+b1 = 10 ;
+b1 /= 10 ;
+print (b1) ;
+
+
+#print modules for numbers 
+print (15 % 6);
+print(3^ 5 );
+
+aaa1 = 3 ;
+aaa2 = 5 ;
+
+
+#print powers of numbers
+print(aaa1 ^  aaa2 );
+
+#if statement
+if (aaa1>aaa2)
+{
+aaa1 = 11 ;
+}
+
+
+#if else statement
+if(aaa1 >aaa2)
+{
+aaa1=11;
+}
+else
+{
+aaa1=15 ;
+}
+
+
+#make while loop as range of two numbers with step 1
+while (5 , 10)
+{
+a1=10 ;
+}
 }

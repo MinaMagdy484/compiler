@@ -1,4 +1,37 @@
-Print: 15
+Print: 0
+Print: 10
+Print: 2000
+Print: 20000
+Print: 19999
+Print: -19999
+Print: 19999
+Print: 20000
+Print: 0
+Print: 0
+Print: 1
+Print: 1
+Print: 0
+Print: 1
 Print: 100
-Print: 2400
+Print: 0
+Print: 20
+Print: 1
+
+MOD : 15 % 6 = 3
+Print: 3
+Print: 243
+Print: 243
+
+IF Condition Found
+IF is FALSE: Skipping Statements
+
+IF ELSE Condition Found
+IF is TRUE: Executing IF Statements
+
+WHILE Loop Found
+5th Loop: 
+6th Loop: 
+7th Loop: 
+8th Loop: 
+9th Loop: 
 Program parsed successfully

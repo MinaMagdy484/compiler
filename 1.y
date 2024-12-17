@@ -10,30 +10,35 @@ extern FILE *yyin;
 extern FILE *yyout;
 FILE *yyTreeOut;
 FILE *yyError;
-int sym[100] = {0}; // Initialize to zero
+float sym[100] = {0}; 
 int flag = 1;
-int level = 0; // Current level for the parse tree
+int level = 0; 
 
-void print_tree(const char *node) {
-    if (yyTreeOut) {
-        // Print indentation based on the current level
-        for (int i = 0; i < level; i++) {
-            fprintf(yyTreeOut, "\t"); 
+ void print_tree(const char *label) {
+        for (int i = 0; i < level; ++i) {
+            fprintf(yyTreeOut, " / ");  // Indentation for tree levels
         }
-        fprintf(yyTreeOut, "%s\n", node);
+        fprintf(yyTreeOut, "%s\n", label);  // Print the node label
     }
-}
+
+    void print_leaf(const char *label, int value) {
+        for (int i = 0; i < level; ++i) {
+            fprintf(yyTreeOut, "  ");
+        }
+        fprintf(yyTreeOut, "%s --> %d\n", label, value);
+    }
 
 void BEGIN_RULE(int level_increment) { level += level_increment ; }
 void END_RULE(int level_decrement) { level -= level_decrement ; }
 
 %}
 
-%token MAIN INT FLOAT CHAR NUM VAR IF ELSE LB RB PRINT WHILE
+%token MAIN INT FLOAT CHAR NUM VAR IF ELSE LB RB PRINT WHILE FOR
 %right '='
 %left '-' '+' '>' '<'
 %left '*' '/' '%'
 %left NEG
+
 
 %%
 
@@ -42,6 +47,9 @@ program: MAIN '{' declarations statements '}'
        { 
            fprintf(yyout, "Program parsed successfully\n"); 
            print_tree("Program");
+           level++;
+           print_tree("Main Block");
+           level--;
        };
 
 declarations: declarations declaration 
@@ -60,18 +68,37 @@ declarations: declarations declaration
 declaration: INT VAR ';'       
            { 
                sym[$2] = 0; 
-               print_tree("declaration: INT VAR");
+                      print_tree("declaration");
+                      level++;
+                      print_tree("int variable");
+                      level++;
+                      print_tree("=");
+                      level++;
+                      print_leaf("Var", sym[$2]);
+                      level -= 3;
            }
            | FLOAT VAR ';'     
            { 
                sym[$2] = 0; 
-               print_tree("declaration: FLOAT VAR");
-           }
+                      print_tree("declaration");
+                      level++;
+                      print_tree("float variable");
+                      level++;
+                      print_tree("=");
+                      level++;
+                      print_leaf("Var", sym[$2]);
+                      level -= 3;           }
            | CHAR VAR ';'      
            { 
                sym[$2] = 0; 
-               print_tree("declaration: CHAR VAR");
-           };
+                      print_tree("declaration");
+                      level++;
+                      print_tree("char variable");
+                      level++;
+                      print_tree("=");
+                      level++;
+                      print_leaf("Var", sym[$2]);
+                      level -= 3;           };
 
 statements: statements statement
           { 
@@ -89,13 +116,13 @@ statements: statements statement
 statement: assignment
             { 
                 BEGIN_RULE(1);
-                print_tree("statement: assignment");
+                print_tree("statement--> assignment");
                 END_RULE(1);
             }
             | condition
             { 
                 BEGIN_RULE(1);
-                print_tree("statement: condition");
+                print_tree("statement--> condition");
                 END_RULE(1);
             }
             | PRINT '(' expression ')' ';' 
@@ -106,95 +133,155 @@ statement: assignment
                 print_tree("Print Statement");
                 END_RULE(1);
 
-            };
+            }
+             
+            ;
 
 assignment: VAR '=' expression ';'      
             { 
-              BEGIN_RULE(1);
 
                 sym[$1] = $3; 
-                print_tree("assignment: VAR = expression;");
-              END_RULE(1);
+                print_tree("Assignment");
+            level++;
+            print_tree("VAR");
+            print_tree("=");
+            print_tree("Expression");
+            level--;
 
             }
             | VAR '+' '=' NUM ';'         
             { 
-              BEGIN_RULE(1);
-
-                sym[$1] += $4; 
-                print_tree("assignment: VAR += NUM;");
-              END_RULE(1);
-
+             sym[$1] += $4; 
+            print_tree("Assignment");
+            level++;
+            print_tree("+=");
+            level++;
+            print_tree("VAR");
+            print_leaf("NUM", $4);
+            level -= 2;
             }
             | VAR '+' '=' VAR ';'         
-            { 
-              BEGIN_RULE(1);
+            {                 
+              sym[$1] += sym[$4]; 
 
-                sym[$1] += sym[$4]; 
-                print_tree("assignment: VAR += VAR;");
-              END_RULE(1);
+            print_tree("Assignment");
+            level++;
+            print_tree("+=");
+            level++;
+            print_tree("VAR");
+            print_tree("VAR");
+            level -= 2;
 
             }
             | VAR '-' '=' NUM ';'         
-            { 
-              BEGIN_RULE(1);
+            {                 sym[$1] -= $4; 
 
-                sym[$1] -= $4; 
-                print_tree("assignment: VAR -= NUM;");
-              END_RULE(1);
+            print_tree("Assignment");
+           level++;
+           print_tree("-=");
+            level++;
+            print_tree("VAR");
+             print_leaf("NUM", $4);
+             level -= 2; // Reset level back
 
             }
             | VAR '-' '=' VAR ';'         
-            { 
-              BEGIN_RULE(1);
-                sym[$1] -= sym[$4]; 
-                print_tree("assignment: VAR -= VAR;");
-              END_RULE(1);
+            {                 sym[$1] -= sym[$4]; 
+
+              print_tree("Assignment");
+        level++;
+        print_tree("-=");
+        level++;
+        print_tree("VAR");
+        print_tree("VAR");
+        level -= 2;
             }
             | VAR '*' '=' NUM ';'         
-            { 
-              BEGIN_RULE(1);
-                sym[$1] *= $4; 
-                print_tree("assignment: VAR *= NUM;");
-                END_RULE(1);
+            {                 sym[$1] *= $4; 
+
+                         print_tree("Assignment");
+          level++;
+        print_tree("*=");
+        level++;
+        print_tree("VAR");
+        print_leaf("NUM", $4);
+        level -= 2; 
             }
             | VAR '*' '=' VAR ';'         
-            { 
-              BEGIN_RULE(1);
-                sym[$1] *= sym[$4]; 
-                print_tree("assignment: VAR *= VAR;");
-                END_RULE(1);
+            {                 sym[$1] *= sym[$4]; 
+        print_tree("Assignment");
+        level++;
+        print_tree("*=");
+        level++;
+        print_tree("VAR");
+        print_tree("VAR");
+        level -= 2;
             }
             | VAR '/' '=' NUM ';'         
             { 
-              BEGIN_RULE(1);
                 if ($4) {
                     sym[$1] /= $4; 
-                    print_tree("assignment: VAR /= NUM;");
-                } else {
+          print_tree("Assignment");
+            level++;
+            print_tree("/=");
+            level++;
+            print_tree("VAR");
+            print_leaf("NUM", $4);
+            level -= 2;                 } else {
                     fprintf(yyError, "\nRuntime Error: Division by zero\n");
                 }
-                END_RULE(1);
             }
             | VAR '/' '=' VAR ';'         
             { 
-              BEGIN_RULE(1);
                 if (sym[$4]) {
                     sym[$1] /= sym[$4]; 
-                    print_tree("assignment: VAR /= VAR");
+            print_tree("Assignment");
+            level++;
+            print_tree("/=");
+            level++;
+            print_tree("VAR");
+            print_tree("VAR");
+            level -= 2;
                 } else {
                     fprintf(yyError, "\nRuntime Error: Division by zero\n");
                 }
-                END_RULE(1);
-            };
+            }
+           |VAR '-''-' ';' {sym[$1]=sym[$1]-1;
+           $$ = sym[$1] ;
+           print_tree("Decrement variable");
+            level++;
+            print_tree("VAR");
+            print_leaf("VAR",sym[$1]);
+            level -= 1;}
+
+           |VAR '+''+' ';' {sym[$1]=sym[$1]+1;
+           $$ = sym[$1] ;
+           print_tree("increment variable");
+            level++;
+            print_tree("VAR");
+            print_leaf("VAR",sym[$1]);
+            level -= 1;} 
+            
+            
+            ;
 
 condition: 
         IF '(' expression ')' '{' statements '}' 
           {
-            BEGIN_RULE(1);
             fprintf(yyout, "\nIF Condition Found\n");
+                        print_tree("IF");
+              level++;
+              print_tree("Condition");
+              level++;
+              print_tree("Expression");
+              level--; // Reset after expression
+              print_tree("Body");
+              level++;
+              print_tree("Statements");
+              level -= 2;
             if ($3) {
                 fprintf(yyout, "IF is TRUE: Executing Statements\n");
+                
                 $$ = 1; 
                 print_tree("IF Condition: TRUE");
             } else {
@@ -202,12 +289,16 @@ condition:
                 $$ = 0; 
                 print_tree("IF Condition: FALSE");
             }
-            END_RULE(1);
           }
         | IF '(' expression ')' '{' statements '}' ELSE '{' statements '}' 
           {
-            BEGIN_RULE(1);
             fprintf(yyout, "\nIF ELSE Condition Found\n");
+            print_tree("IF-ELSE");
+            level++;
+            print_tree("Condition");
+            level++;
+            print_tree("Expression");
+            level--;
             if ($3) { 
                 fprintf(yyout, "IF is TRUE: Executing IF Statements\n");
                 $$ = 1; 
@@ -217,130 +308,145 @@ condition:
                 $$ = 0; 
                 print_tree("IF ELSE Condition: FALSE");
             }
-            END_RULE(1);
-          };
+          }
+          |WHILE '(' NUM ',' NUM ')' '{' statement '}' {
+	                                                int i;
+	                                                fprintf(yyout,"\nWHILE Loop Found\n");
+                                                  print_tree("\nWHILE Loop Found\n");
+            level++;
+            print_tree("ITERATIONS");
+            level++;
+
+            
+	                                                for(i=$3 ; i<$5 ; i++) 
+                                                        {
+                                                                fprintf(yyout,"%dth Loop: \n", i);
+                                                                      print_leaf("iteration num" , i);
+                                                        }
+                                                        level -=2 ;
+				        }
+        | WHILE '(' VAR ',' VAR ')' '{' statement '}' {
+	                                                int i;
+	                                                fprintf(yyout,"\nWHILE Loop Found\n");
+	                                                for(i=sym[$3] ; i<sym[$5] ; i++) 
+                                                        {
+                                                                fprintf(yyout,"%dth Loop: \n", i);
+                                                        }}
+                    
+          ;
 
 expression: NUM                      
             { 
-                BEGIN_RULE(1); 
                 $$ = $1; 
-                print_tree("expression: NUM");
-                END_RULE(1); 
+               print_tree("expr");
+            level++;
+            print_tree("=");
+            print_leaf("NUM", $1);
+            level--;
             }
           | VAR                      
-            { 
-                BEGIN_RULE(1); 
-                $$ = sym[$1]; 
-                print_tree("expression: VAR");
-                END_RULE(1); 
+            {                 $$ = sym[$1]; 
+
+                               print_tree("expr");
+            level++;
+            print_tree("=");
+            print_leaf("VAR", sym[$1]);
+            level--;
             }
           | expression '*' expression           
             { 
-                BEGIN_RULE(1);
                 $$ = $1 * $3; 
-                print_tree("expression: expression * expression");
-                END_RULE(1); 
+                print_tree("Multiplication Expression");
             }
           | expression '/' expression           
             { 
-                BEGIN_RULE(1);
                 $$ = $1 / $3; 
-                print_tree("expression: expression / expression");
-                END_RULE(1); 
+                print_tree( "Division Expression");
+
             }
           | expression '+' expression           
-            { 
-                BEGIN_RULE(1);
-                $$ = $1 + $3; 
-                print_tree("expression: expression + expression");
-                END_RULE(1); 
+            {                 $$ = $1 + $3; 
+                print_tree( "Addition Expression");
             }
           | expression '-' expression           
             { 
-                BEGIN_RULE(1);
                 $$ = $1 - $3; 
-                print_tree("expression: expression - expression");
-                END_RULE(1); 
+                print_tree( "Subtraction Expression");
+
             }
           | '(' expression ')'            
             { 
-                BEGIN_RULE(1);
                 $$ = $2; 
-                print_tree("expression: ( expression )");
-                END_RULE(1); 
+                print_tree( "Parenthesized Expression");
             }
           | expression '%' expression
             { 
-                BEGIN_RULE(1);
                 if($3) {
                     fprintf(yyout, "\nMOD : %d %% %d = %d\n", $1, $3, $1 % $3);
                     $$ = $1 % $3;
-                    print_tree("expression: expression % expression");
+                    print_tree( "Modulus Expression");
                 } else {
                     $$ = 0;
                     fprintf(yyError, "\nRuntime Error: MOD by zero\n");
                     print_tree("expression: expression % expression (division by zero)");
                 }
-                END_RULE(1); 
             }
           | expression '^' expression
             { 
-                BEGIN_RULE(1);
                 $$ = pow($1, $3); 
-                print_tree("expression: expression ^ expression");
-                END_RULE(1); 
+                print_tree( "Exponentiation Expression");
+
             }
           | expression '<' expression
             { 
-                BEGIN_RULE(1);
                 if ($1 < $3) {
                     $$ = 1; 
                 } else {
                     $$ = 0; 
                 }
-                print_tree("expression: expression < expression");
-                END_RULE(1); 
+                print_tree( "Less Than Comparison");
+
             }
           | expression '>' expression
             { 
-                BEGIN_RULE(1);
                 if ($1 > $3) {
                     $$ = 1; 
                 } else {
                     $$ = 0; 
                 }
-                print_tree("expression: expression > expression");
-                END_RULE(1); 
+                print_tree( "Greater Than Comparison");
+
             }
           | expression '=' '=' expression  
             { 
-                BEGIN_RULE(1);
                 if ($1 == $3) {
                     $$ = 1; 
                 } else {
                     $$ = 0; 
                 }
-                print_tree("expression: expression == expression");
-                END_RULE(1); 
+                print_tree("Equal Comparison");
             }
           | expression '!' '=' expression 
             { 
-                BEGIN_RULE(1);
                 if ($1 != $3) {
                     $$ = 1; 
                 } else {
                     $$ = 0; 
                 }
-                print_tree("expression: expression != expression");
-                END_RULE(1); 
+                print_tree( "Not Equal Comparison");
+
             }
           | '!' expression  
             { 
-                BEGIN_RULE(1);
                 $$ = !$2; 
-                print_tree("expression: ! expression");
-                END_RULE(1); 
+                print_tree( "Logical NOT Expression");
+
             }
+          |'-' expression
+          {
+          $$ = -$2; 
+
+          }
           ;
 
 %%

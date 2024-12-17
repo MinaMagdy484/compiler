@@ -18,12 +18,12 @@ struct KeyValue {
     int value;
 };
 
-struct KeyValue myMap[MAX_SIZE]; // Fixed-size map
+struct KeyValue myMap[MAX_SIZE];
 
 void addToMap(const char *key, int value) {
     for (int i = 0; i < MAX_SIZE; ++i) {
         if (strcmp(myMap[i].key, key) == 0) {
-            myMap[i].value = value; // Update value if key exists
+            myMap[i].value = value; 
             return;
         }
     }
@@ -43,7 +43,7 @@ int getValueFromMap(const char *key) {
             return myMap[i].value;
         }
     }
-    return -1; // Key not found
+    return -1;
 }
 %}
 
@@ -55,6 +55,7 @@ int getValueFromMap(const char *key) {
 "char"   { return CHAR; }
 [0-9]+   { yylval = atoi(yytext); return NUM; }
 "<"      { return '<'; }
+">"      { return '>'; }
 ";"      { return ';'; }
 ","      { return ','; }
 "if"     { return IF; }
@@ -64,6 +65,7 @@ int getValueFromMap(const char *key) {
 "print"  { return PRINT; }
 "while"  { return WHILE; }
 "main"   { return MAIN; }
+"for"   { return FOR; }
 
 [-+/*<>=,():;%^!]    {
                     yylval = yytext[0];	
