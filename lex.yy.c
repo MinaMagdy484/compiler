@@ -416,12 +416,12 @@ struct KeyValue {
     int value;
 };
 
-struct KeyValue myMap[MAX_SIZE]; // Fixed-size map
+struct KeyValue myMap[MAX_SIZE];
 
 void addToMap(const char *key, int value) {
     for (int i = 0; i < MAX_SIZE; ++i) {
         if (strcmp(myMap[i].key, key) == 0) {
-            myMap[i].value = value; // Update value if key exists
+            myMap[i].value = value; 
             return;
         }
     }
@@ -441,7 +441,7 @@ int getValueFromMap(const char *key) {
             return myMap[i].value;
         }
     }
-    return -1; // Key not found
+    return -1;
 }
 #line 447 "lex.yy.c"
 

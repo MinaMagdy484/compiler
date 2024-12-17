@@ -332,7 +332,20 @@ condition:
                                                         {
                                                                 fprintf(yyout,"%dth Loop: \n", i);
                                                         }}
-                    
+        | WHILE '(' VAR ',' NUM ')' '{' statement '}' {
+	                                                int i;
+	                                                fprintf(yyout,"\nWHILE Loop Found\n");
+	                                                for(i=sym[$3] ; i<$5 ; i++) 
+                                                        {
+                                                                fprintf(yyout,"%dth Loop: \n", i);
+                                                        }}
+        | WHILE '(' NUM ',' VAR ')' '{' statement '}' {
+	                                                int i;
+	                                                fprintf(yyout,"\nWHILE Loop Found\n");
+	                                                for(i=$3 ; i<sym[$5] ; i++) 
+                                                        {
+                                                                fprintf(yyout,"%dth Loop: \n", i);
+                                                        }}                                                                            
           ;
 
 expression: NUM                      

@@ -399,5 +399,34 @@ WHILE Loop Found
       iteration num --> 9
  /  / statement--> condition
  /  / statements: statements statement
+ / expr
+ /  / =
+    NUM --> 10
+ / Assignment
+ /  / VAR
+ /  / =
+ /  / Expression
+ /  / statement--> assignment
+ /  / statements: statements statement
+ / expr
+ /  / =
+    NUM --> 10
+ / Assignment
+ /  / VAR
+ /  / =
+ /  / Expression
+ /  / statement--> assignment
+ /  / statement--> condition
+ /  / statements: statements statement
+ / expr
+ /  / =
+    NUM --> 10
+ / Assignment
+ /  / VAR
+ /  / =
+ /  / Expression
+ /  / statement--> assignment
+ /  / statement--> condition
+ /  / statements: statements statement
  / Program
  /  / Main Block

@@ -34,4 +34,23 @@ WHILE Loop Found
 7th Loop: 
 8th Loop: 
 9th Loop: 
+
+WHILE Loop Found
+5th Loop: 
+6th Loop: 
+7th Loop: 
+8th Loop: 
+9th Loop: 
+
+WHILE Loop Found
+10th Loop: 
+11th Loop: 
+12th Loop: 
+13th Loop: 
+14th Loop: 
+15th Loop: 
+16th Loop: 
+17th Loop: 
+18th Loop: 
+19th Loop: 
 Program parsed successfully
