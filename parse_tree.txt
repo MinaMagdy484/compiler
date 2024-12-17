@@ -1,3 +1,24 @@
-Declaration: INT VAR
-  Print Statement
-    Program parsed successfully
+	declarations: empty
+declaration: INT VAR
+	declarations: declarations declaration
+	statements empty
+	expression: NUM
+	expression: NUM
+	expression: expression + expression
+	expression: NUM
+	expression: NUM
+	expression: expression * expression
+	expression: NUM
+	expression: expression / expression
+	expression: expression + expression
+	assignment: VAR = expression;
+	statement: assignment
+	statements: statements statement
+	expression: VAR
+	expression: NUM
+	expression: expression * expression
+	expression: VAR
+	expression: expression + expression
+	Print Statement
+	statements: statements statement
+Program

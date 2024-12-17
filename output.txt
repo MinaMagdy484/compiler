@@ -1,2 +1,2 @@
-Print: 360
+Print: 672
 Program parsed successfully
