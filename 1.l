@@ -61,6 +61,8 @@ int getValueFromMap(const char *key) {
 "else"   { return ELSE; }
 "{"      { return '{'; }
 "}"      { return '}'; }
+"("      { return '('; }
+")"      { return ')'; }
 "print"  { return PRINT; }
 "while"  { return WHILE; }
 "main"   { return MAIN; }

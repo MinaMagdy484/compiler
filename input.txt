@@ -1,5 +1,17 @@
 main {
     int a;
+int b;
 a=15;
-print (a*23+a);
+b=10;
+
+if(a>b){
+print(a);
+}
+
+if (a<b){
+print(b);
+}
+else {
+print(a);
+}
 }

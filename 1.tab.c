@@ -83,6 +83,7 @@
         int sym[1000] = {0}; // Initialize to zero
         int flag = 1;
         int level = 0;
+        int f=0;
 
           void print_tree( const char* label) {
             for (int i = 0; i < level; ++i) {
@@ -94,7 +95,7 @@
 
 
 /* Line 189 of yacc.c  */
-#line 98 "1.tab.c"
+#line 99 "1.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -155,7 +156,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 159 "1.tab.c"
+#line 160 "1.tab.c"
 
 #ifdef short
 # undef short
@@ -457,10 +458,10 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    36,    36,    41,    42,    44,    45,    47,    50,    51,
-      53,    54,    55,    58,    60,    63,    67,    70,    74,    77,
-      80,    89,   100,   111,   127,   128,   129,   130,   131,   132,
-     133,   134,   144,   145,   154,   158,   162,   166
+       0,    37,    37,    42,    43,    45,    46,    48,    51,    52,
+      54,    55,    56,    59,    61,    64,    68,    71,    75,    78,
+      81,    90,   101,   112,   132,   133,   134,   135,   136,   137,
+     138,   139,   149,   150,   159,   163,   167,   171
 };
 #endif
 
@@ -1422,7 +1423,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 37 "1.y"
+#line 38 "1.y"
     { fprintf(yyout, "Program parsed successfully\n"); 
                   print_tree( "Program parsed successfully");
 ;}
@@ -1431,14 +1432,14 @@ yyreduce:
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 44 "1.y"
+#line 45 "1.y"
     { sym[(yyvsp[(2) - (3)])] = 0;   print_tree("Declaration: INT VAR");;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 45 "1.y"
+#line 46 "1.y"
     { sym[(yyvsp[(2) - (3)])] = 0;   print_tree("Declaration: FLOAT VAR");
 ;}
     break;
@@ -1446,7 +1447,7 @@ yyreduce:
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 47 "1.y"
+#line 48 "1.y"
     { sym[(yyvsp[(2) - (3)])] = 0;   print_tree("Declaration: CHAR VAR");
 ;}
     break;
@@ -1454,21 +1455,21 @@ yyreduce:
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 55 "1.y"
+#line 56 "1.y"
     { fprintf(yyout, "Print: %d\n", (yyvsp[(3) - (5)])); print_tree("Print Statement");;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 58 "1.y"
+#line 59 "1.y"
     { sym[(yyvsp[(1) - (4)])] = (yyvsp[(3) - (4)]); ;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 60 "1.y"
+#line 61 "1.y"
     {
                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]+(yyvsp[(4) - (5)]);
                         ;}
@@ -1477,7 +1478,7 @@ yyreduce:
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 63 "1.y"
+#line 64 "1.y"
     {
                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]+sym[(yyvsp[(4) - (5)])];
                         ;}
@@ -1486,7 +1487,7 @@ yyreduce:
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 67 "1.y"
+#line 68 "1.y"
     {
                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]-(yyvsp[(4) - (5)]);
                         ;}
@@ -1495,7 +1496,7 @@ yyreduce:
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 70 "1.y"
+#line 71 "1.y"
     {
                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]-sym[(yyvsp[(4) - (5)])];
                         ;}
@@ -1504,7 +1505,7 @@ yyreduce:
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 74 "1.y"
+#line 75 "1.y"
     {
                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]*(yyvsp[(4) - (5)]);
                         ;}
@@ -1513,7 +1514,7 @@ yyreduce:
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 77 "1.y"
+#line 78 "1.y"
     {
                                     sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]*sym[(yyvsp[(4) - (5)])];
                         ;}
@@ -1522,7 +1523,7 @@ yyreduce:
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 80 "1.y"
+#line 81 "1.y"
     {
                                         if((yyvsp[(4) - (5)])){
                                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]/(yyvsp[(4) - (5)]);
@@ -1537,7 +1538,7 @@ yyreduce:
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 89 "1.y"
+#line 90 "1.y"
     {
                                         if(sym[(yyvsp[(4) - (5)])]){
                                                 sym[(yyvsp[(1) - (5)])]=sym[(yyvsp[(1) - (5)])]/sym[(yyvsp[(4) - (5)])];
@@ -1552,7 +1553,7 @@ yyreduce:
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 101 "1.y"
+#line 102 "1.y"
     {
             fprintf(yyout, "\nIF Condition Found\n");
             if ((yyvsp[(3) - (7)])) {
@@ -1568,17 +1569,21 @@ yyreduce:
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 112 "1.y"
+#line 113 "1.y"
     {
             fprintf(yyout, "\nIF ELSE Condition Found\n");
-            if ((yyvsp[(3) - (11)])) { 
+            if ((yyvsp[(3) - (11)]) != 0 ) { 
                 fprintf(yyout, "IF is TRUE: Executing IF Statements\n");
-                (yyval) = 1; 
-                return 0;
+                //execute_statements($6);
+                (yyval) = 1;
+                f=1; 
             } else {
+                if(f!=1){
                 fprintf(yyout, "ELSE is TRUE: Executing ELSE Statements\n");
+                //execute_statements($10);
                 (yyval) = 0; 
-                return (yyval);
+                }
+        
             }
           ;}
     break;
@@ -1586,56 +1591,56 @@ yyreduce:
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 127 "1.y"
+#line 132 "1.y"
     { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 128 "1.y"
+#line 133 "1.y"
     { (yyval) = sym[(yyvsp[(1) - (1)])]; ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 129 "1.y"
+#line 134 "1.y"
     { (yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]); ;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 130 "1.y"
+#line 135 "1.y"
     { (yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]); ;}
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 131 "1.y"
+#line 136 "1.y"
     { (yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]); ;}
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 132 "1.y"
+#line 137 "1.y"
     { (yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]); ;}
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 133 "1.y"
+#line 138 "1.y"
     { (yyval) = (yyvsp[(2) - (3)]); ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 134 "1.y"
+#line 139 "1.y"
     { if((yyvsp[(3) - (3)])){
 				     		fprintf(yyout,"\nMOD :%d % %d \n",(yyvsp[(1) - (3)]),(yyvsp[(3) - (3)]),(yyvsp[(1) - (3)]) % (yyvsp[(3) - (3)]));
 				     		(yyval) = (yyvsp[(1) - (3)]) % (yyvsp[(3) - (3)]);
@@ -1651,14 +1656,14 @@ yyreduce:
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 144 "1.y"
+#line 149 "1.y"
     {  (yyval) = pow((yyvsp[(1) - (3)]) , (yyvsp[(3) - (3)]));;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 145 "1.y"
+#line 150 "1.y"
     { if((yyvsp[(1) - (3)]) < (yyvsp[(3) - (3)])) 
                                                 {(yyval)=1 ;}
                                                 
@@ -1672,7 +1677,7 @@ yyreduce:
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 154 "1.y"
+#line 159 "1.y"
     {if((yyvsp[(1) - (3)]) > (yyvsp[(3) - (3)])) 
                                                 (yyval)=1 ;
                                                 else
@@ -1682,7 +1687,7 @@ yyreduce:
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 158 "1.y"
+#line 163 "1.y"
     {if((yyvsp[(1) - (4)]) == (yyvsp[(3) - (4)])) 
                                                 (yyval)=1 ;
                                                 else
@@ -1692,7 +1697,7 @@ yyreduce:
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 162 "1.y"
+#line 167 "1.y"
     {if((yyvsp[(1) - (4)]) != (yyvsp[(3) - (4)])) 
                                                 (yyval)=1;
                                                 else
@@ -1702,7 +1707,7 @@ yyreduce:
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 166 "1.y"
+#line 171 "1.y"
     {
                                    
                                         (yyval) = !(yyvsp[(2) - (2)]);                                        
@@ -1712,7 +1717,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1716 "1.tab.c"
+#line 1721 "1.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1924,7 +1929,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 172 "1.y"
+#line 177 "1.y"
 
 
 void yyerror(char *s) {

@@ -12,6 +12,7 @@
         int sym[1000] = {0}; // Initialize to zero
         int flag = 1;
         int level = 0;
+        int f=0;
 
           void print_tree( const char* label) {
             for (int i = 0; i < level; ++i) {
@@ -111,14 +112,18 @@ condition:
         | IF '(' expression ')' '{' statements '}' ELSE '{' statements '}' 
           {
             fprintf(yyout, "\nIF ELSE Condition Found\n");
-            if ($3) { 
+            if ($3 != 0 ) { 
                 fprintf(yyout, "IF is TRUE: Executing IF Statements\n");
-                $$ = 1; 
-                return 0;
+                //execute_statements($6);
+                $$ = 1;
+                f=1; 
             } else {
+                if(f!=1){
                 fprintf(yyout, "ELSE is TRUE: Executing ELSE Statements\n");
+                //execute_statements($10);
                 $$ = 0; 
-                return $$;
+                }
+        
             }
           };
 

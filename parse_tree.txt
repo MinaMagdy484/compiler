@@ -1,3 +1,6 @@
 Declaration: INT VAR
-  Print Statement
-    Program parsed successfully
+  Declaration: INT VAR
+    Print Statement
+      Print Statement
+        Print Statement
+          Program parsed successfully

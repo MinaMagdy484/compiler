@@ -1,2 +1,10 @@
-Print: 360
+Print: 15
+
+IF Condition Found
+IF is TRUE: Executing Statements
+Print: 10
+Print: 15
+
+IF ELSE Condition Found
+ELSE is TRUE: Executing ELSE Statements
 Program parsed successfully
