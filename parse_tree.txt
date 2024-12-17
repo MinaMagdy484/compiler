@@ -1,0 +1,3 @@
+Declaration: INT VAR
+  Print Statement
+    Program parsed successfully
