@@ -1,24 +1,29 @@
 	declarations: empty
 declaration: INT VAR
 	declarations: declarations declaration
+declaration: INT VAR
+	declarations: declarations declaration
 	statements empty
 	expression: NUM
+	assignment: VAR = expression;
+	statement: assignment
+	statements: statements statement
 	expression: NUM
-	expression: expression + expression
-	expression: NUM
-	expression: NUM
-	expression: expression * expression
-	expression: NUM
-	expression: expression / expression
-	expression: expression + expression
 	assignment: VAR = expression;
 	statement: assignment
 	statements: statements statement
 	expression: VAR
-	expression: NUM
-	expression: expression * expression
 	expression: VAR
-	expression: expression + expression
+	expression: expression < expression
+	statements empty
+	expression: VAR
 	Print Statement
+	statements: statements statement
+	statements empty
+	expression: VAR
+	Print Statement
+	statements: statements statement
+	IF ELSE Condition: FALSE
+	statement: condition
 	statements: statements statement
 Program

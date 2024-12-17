@@ -1,2 +1,6 @@
-Print: 672
+Print: 100
+Print: 500
+
+IF ELSE Condition Found
+ELSE is TRUE: Executing ELSE Statements
 Program parsed successfully
