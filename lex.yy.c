@@ -761,7 +761,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 74 "1.l"
+#line 73 "1.l"
 { 
     if (getValueFromMap(yytext) == -1) {
         num_of_v++;
@@ -775,26 +775,26 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 85 "1.l"
+#line 84 "1.l"
 {
         /*ignore comment*/
         }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 89 "1.l"
+#line 88 "1.l"
 {}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 90 "1.l"
+#line 89 "1.l"
 {
     fprintf(yyError, "%s -> Unknown character!\n", yytext);
 }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 93 "1.l"
+#line 92 "1.l"
 ECHO;
 	YY_BREAK
 #line 801 "lex.yy.c"
@@ -1683,7 +1683,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 93 "1.l"
+#line 92 "1.l"
 
 
 int yywrap() {

@@ -10,7 +10,7 @@ extern FILE *yyin;
 extern FILE *yyout;
 FILE *yyTreeOut;
 FILE *yyError;
-int sym[1000] = {0}; // Initialize to zero
+int sym[100] = {0}; // Initialize to zero
 int flag = 1;
 int level = 0; // Current level for the parse tree
 
@@ -30,7 +30,6 @@ void END_RULE(int level_decrement) { level -= level_decrement ; }
 %}
 
 %token MAIN INT FLOAT CHAR NUM VAR IF ELSE LB RB PRINT WHILE
-%token ADD_ASSIGN SUB_ASSIGN MUL_ASSIGN DIV_ASSIGN
 %right '='
 %left '-' '+' '>' '<'
 %left '*' '/' '%'
@@ -118,7 +117,7 @@ assignment: VAR '=' expression ';'
               END_RULE(1);
 
             }
-            | VAR ADD_ASSIGN NUM ';'         
+            | VAR '+' '=' NUM ';'         
             { 
               BEGIN_RULE(1);
 
@@ -127,7 +126,7 @@ assignment: VAR '=' expression ';'
               END_RULE(1);
 
             }
-            | VAR ADD_ASSIGN VAR ';'         
+            | VAR '+' '=' VAR ';'         
             { 
               BEGIN_RULE(1);
 
@@ -136,7 +135,7 @@ assignment: VAR '=' expression ';'
               END_RULE(1);
 
             }
-            | VAR SUB_ASSIGN NUM ';'         
+            | VAR '-' '=' NUM ';'         
             { 
               BEGIN_RULE(1);
 
@@ -145,28 +144,28 @@ assignment: VAR '=' expression ';'
               END_RULE(1);
 
             }
-            | VAR SUB_ASSIGN VAR ';'         
+            | VAR '-' '=' VAR ';'         
             { 
               BEGIN_RULE(1);
                 sym[$1] -= sym[$4]; 
                 print_tree("assignment: VAR -= VAR;");
               END_RULE(1);
             }
-            | VAR MUL_ASSIGN NUM ';'         
+            | VAR '*' '=' NUM ';'         
             { 
               BEGIN_RULE(1);
                 sym[$1] *= $4; 
                 print_tree("assignment: VAR *= NUM;");
                 END_RULE(1);
             }
-            | VAR MUL_ASSIGN VAR ';'         
+            | VAR '*' '=' VAR ';'         
             { 
               BEGIN_RULE(1);
                 sym[$1] *= sym[$4]; 
                 print_tree("assignment: VAR *= VAR;");
                 END_RULE(1);
             }
-            | VAR DIV_ASSIGN NUM ';'         
+            | VAR '/' '=' NUM ';'         
             { 
               BEGIN_RULE(1);
                 if ($4) {
@@ -177,7 +176,7 @@ assignment: VAR '=' expression ';'
                 }
                 END_RULE(1);
             }
-            | VAR DIV_ASSIGN VAR ';'         
+            | VAR '/' '=' VAR ';'         
             { 
               BEGIN_RULE(1);
                 if (sym[$4]) {

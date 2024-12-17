@@ -1,2 +1,4 @@
-Print: 672
+Print: 15
+Print: 100
+Print: 2400
 Program parsed successfully

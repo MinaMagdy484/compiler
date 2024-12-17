@@ -70,7 +70,6 @@ int getValueFromMap(const char *key) {
                     return  *yytext;	
                     }
 
-                    
 [a-zA-Z][a-zA-Z0-9]* { 
     if (getValueFromMap(yytext) == -1) {
         num_of_v++;
