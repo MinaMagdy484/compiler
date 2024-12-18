@@ -87,16 +87,16 @@ int level = 0;
 
  void print_tree(const char *label) {
         for (int i = 0; i < level; ++i) {
-            fprintf(yyTreeOut, " / ");  // Indentation for tree levels
+            fprintf(yyTreeOut, " ||| ");  // Indentation for tree levels
         }
         fprintf(yyTreeOut, "%s\n", label);  // Print the node label
     }
 
     void print_leaf(const char *label, int value) {
         for (int i = 0; i < level; ++i) {
-            fprintf(yyTreeOut, "  ");
+            fprintf(yyTreeOut, "     ");
         }
-        fprintf(yyTreeOut, "%s --> %d\n", label, value);
+        fprintf(yyTreeOut, "%s  %d\n", label, value);
     }
 
 void BEGIN_RULE(int level_increment) { level += level_increment ; }
@@ -471,11 +471,11 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    46,    46,    55,    62,    68,    80,    91,   103,   110,
-     116,   122,   128,   140,   152,   163,   176,   188,   199,   210,
-     220,   234,   249,   257,   269,   293,   312,   328,   335,   342,
-     351,   360,   369,   374,   380,   384,   390,   395,   407,   413,
-     423,   433,   442,   452,   458
+       0,    46,    46,    55,    62,    68,    78,    87,    97,   104,
+     110,   116,   122,   135,   147,   161,   174,   187,   203,   217,
+     229,   246,   263,   272,   286,   313,   336,   353,   360,   367,
+     376,   386,   396,   412,   433,   447,   463,   470,   492,   508,
+     518,   528,   537,   547,   553
 };
 #endif
 
@@ -1461,7 +1461,7 @@ yyreduce:
 #line 47 "1.y"
     { 
            fprintf(yyout, "Program parsed successfully\n"); 
-           print_tree("Program");
+           print_tree("Start Program");
            level++;
            print_tree("Main Block");
            level--;
@@ -1474,7 +1474,7 @@ yyreduce:
 #line 56 "1.y"
     { 
                 BEGIN_RULE(1);
-                print_tree("declarations: declarations declaration");
+                print_tree("declarations---> declarations declaration");
                 END_RULE(1);
             ;}
     break;
@@ -1485,7 +1485,7 @@ yyreduce:
 #line 62 "1.y"
     { 
                 BEGIN_RULE(1);
-                print_tree("declarations: empty");
+                print_tree("declarations---> empty");
                 END_RULE(1);
             ;}
     break;
@@ -1496,56 +1496,50 @@ yyreduce:
 #line 69 "1.y"
     { 
                sym[(yyvsp[(2) - (3)])] = 0; 
-                      print_tree("declaration");
                       level++;
-                      print_tree("int variable");
-                      level++;
-                      print_tree("=");
-                      level++;
-                      print_leaf("Var", sym[(yyvsp[(2) - (3)])]);
-                      level -= 3;
+                      print_tree("declaration -->") ;
+                      level+=2;
+                      print_leaf("int variable ",sym[(yyvsp[(2) - (3)])]);
+                      level-=3;
+                      
            ;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 81 "1.y"
+#line 79 "1.y"
     { 
                sym[(yyvsp[(2) - (3)])] = 0; 
-                      print_tree("declaration");
                       level++;
-                      print_tree("float variable");
-                      level++;
-                      print_tree("=");
-                      level++;
-                      print_leaf("Var", sym[(yyvsp[(2) - (3)])]);
-                      level -= 3;           ;}
+                      print_tree("declaration -->") ;
+                      level+=2;
+                      print_leaf("int variable ",sym[(yyvsp[(2) - (3)])]);
+                      level-=3;     
+            ;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 92 "1.y"
+#line 88 "1.y"
     { 
-               sym[(yyvsp[(2) - (3)])] = 0; 
-                      print_tree("declaration");
+                sym[(yyvsp[(2) - (3)])] = 0; 
                       level++;
-                      print_tree("char variable");
-                      level++;
-                      print_tree("=");
-                      level++;
-                      print_leaf("Var", sym[(yyvsp[(2) - (3)])]);
-                      level -= 3;           ;}
+                      print_tree("declaration -->") ;
+                      level+=2;
+                      print_leaf("int variable ",sym[(yyvsp[(2) - (3)])]);
+                      level-=3;       
+                        ;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 104 "1.y"
+#line 98 "1.y"
     { 
               BEGIN_RULE(1);
-              print_tree("statements: statements statement");
+              print_tree("statements---> statements statement");
               END_RULE(1);
           ;}
     break;
@@ -1553,10 +1547,10 @@ yyreduce:
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 110 "1.y"
+#line 104 "1.y"
     { 
               BEGIN_RULE(1);
-              print_tree("statements empty");
+              print_tree("statements---> empty");
               END_RULE(1);
           ;}
     break;
@@ -1564,7 +1558,7 @@ yyreduce:
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 117 "1.y"
+#line 111 "1.y"
     { 
                 BEGIN_RULE(1);
                 print_tree("statement--> assignment");
@@ -1575,7 +1569,7 @@ yyreduce:
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 123 "1.y"
+#line 117 "1.y"
     { 
                 BEGIN_RULE(1);
                 print_tree("statement--> condition");
@@ -1586,13 +1580,14 @@ yyreduce:
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 129 "1.y"
+#line 123 "1.y"
     { 
                 BEGIN_RULE(1);
 
                 fprintf(yyout, "Print: %d\n", (yyvsp[(3) - (5)])); 
-                print_tree("Print Statement");
-                END_RULE(1);
+                level++;
+                print_tree("statement--> condition");
+                END_RULE(2);
 
             ;}
     break;
@@ -1600,16 +1595,16 @@ yyreduce:
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 141 "1.y"
+#line 136 "1.y"
     { 
 
                 sym[(yyvsp[(1) - (4)])] = (yyvsp[(3) - (4)]); 
-                print_tree("Assignment");
             level++;
-            print_tree("VAR");
-            print_tree("=");
-            print_tree("Expression");
-            level--;
+            print_tree("assignment-- > " );
+            level+=2 ;
+           print_leaf("Var =",(yyvsp[(3) - (4)]) );
+
+            level-=3;
 
             ;}
     break;
@@ -1617,50 +1612,52 @@ yyreduce:
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 153 "1.y"
+#line 148 "1.y"
     { 
              sym[(yyvsp[(1) - (5)])] += (yyvsp[(4) - (5)]); 
-            print_tree("Assignment");
             level++;
-            print_tree("+=");
-            level++;
-            print_tree("VAR");
-            print_leaf("NUM", (yyvsp[(4) - (5)]));
-            level -= 2;
+            print_tree("VAR += -- > " );
+            level+=2 ;
+            print_leaf("VAR =",sym[(yyvsp[(1) - (5)])]);
+
+            level+=2 ;
+            print_leaf("NUM =",(yyvsp[(4) - (5)]) );
+
+            level-=5;
             ;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 164 "1.y"
+#line 162 "1.y"
     {                 
               sym[(yyvsp[(1) - (5)])] += sym[(yyvsp[(4) - (5)])]; 
 
-            print_tree("Assignment");
             level++;
-            print_tree("+=");
-            level++;
-            print_tree("VAR");
-            print_tree("VAR");
-            level -= 2;
-
+            print_tree("VAR += -- > " );
+            level+=2 ;           
+            print_leaf("VAR =",sym[(yyvsp[(1) - (5)])]);
+            level+=2 ;
+            print_leaf("VAR =",sym[(yyvsp[(4) - (5)])] );
+            level-=5;
             ;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 177 "1.y"
-    {                 sym[(yyvsp[(1) - (5)])] -= (yyvsp[(4) - (5)]); 
+#line 175 "1.y"
+    {
+            sym[(yyvsp[(1) - (5)])] -= (yyvsp[(4) - (5)]); 
 
-            print_tree("Assignment");
-           level++;
-           print_tree("-=");
             level++;
-            print_tree("VAR");
-             print_leaf("NUM", (yyvsp[(4) - (5)]));
-             level -= 2; // Reset level back
+            print_tree("VAR -= -- > " );
+            level+=2 ;          
+           print_leaf("NUM =",(yyvsp[(4) - (5)]));
+            level+=2 ;           
+          print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+            level-=5;
 
             ;}
     break;
@@ -1668,64 +1665,73 @@ yyreduce:
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 189 "1.y"
+#line 188 "1.y"
     {                 sym[(yyvsp[(1) - (5)])] -= sym[(yyvsp[(4) - (5)])]; 
 
-              print_tree("Assignment");
-        level++;
-        print_tree("-=");
-        level++;
-        print_tree("VAR");
-        print_tree("VAR");
-        level -= 2;
+            level++;
+            print_tree("VAR -= -- > " );
+            level+=2 ;
+          print_leaf("VAR =",sym[(yyvsp[(4) - (5)])]);
+
+            level+=2 ;
+           print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+
+            level-=5;
             ;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 200 "1.y"
+#line 204 "1.y"
     {                 sym[(yyvsp[(1) - (5)])] *= (yyvsp[(4) - (5)]); 
 
-                         print_tree("Assignment");
-          level++;
-        print_tree("*=");
-        level++;
-        print_tree("VAR");
-        print_leaf("NUM", (yyvsp[(4) - (5)]));
-        level -= 2; 
+            level++;
+            print_tree("VAR *= -- > " );
+            level+=2 ;
+           print_leaf("NUM=",(yyvsp[(4) - (5)]));
+
+            level+=2 ;
+            print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+
+            level-=5;
             ;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 211 "1.y"
+#line 218 "1.y"
     {                 sym[(yyvsp[(1) - (5)])] *= sym[(yyvsp[(4) - (5)])]; 
-        print_tree("Assignment");
-        level++;
-        print_tree("*=");
-        level++;
-        print_tree("VAR");
-        print_tree("VAR");
-        level -= 2;
+            level++;
+            print_tree("VAR" );
+            level+=2 ;
+            print_leaf("VAR=",sym[(yyvsp[(4) - (5)])]);
+
+            level+=2 ;
+            print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+
+            level-=5;
             ;}
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 221 "1.y"
+#line 230 "1.y"
     { 
                 if ((yyvsp[(4) - (5)])) {
                     sym[(yyvsp[(1) - (5)])] /= (yyvsp[(4) - (5)]); 
-          print_tree("Assignment");
             level++;
-            print_tree("/=");
-            level++;
-            print_tree("VAR");
-            print_leaf("NUM", (yyvsp[(4) - (5)]));
-            level -= 2;                 } else {
+            print_tree("VAR /= -- > " );
+            level+=2 ;
+                       print_leaf("NUM=",(yyvsp[(4) - (5)]));
+
+            level+=2 ;
+                       print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+
+            level-=5;
+            } else {
                     fprintf(yyError, "\nRuntime Error: Division by zero\n");
                 }
             ;}
@@ -1734,17 +1740,19 @@ yyreduce:
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 235 "1.y"
+#line 247 "1.y"
     { 
                 if (sym[(yyvsp[(4) - (5)])]) {
                     sym[(yyvsp[(1) - (5)])] /= sym[(yyvsp[(4) - (5)])]; 
-            print_tree("Assignment");
             level++;
-            print_tree("/=");
-            level++;
-            print_tree("VAR");
-            print_tree("VAR");
-            level -= 2;
+            print_tree("VAR /= -- > " );
+            level+=2 ;
+                       print_leaf("VAR=",sym[(yyvsp[(4) - (5)])]);
+
+            level+=2 ;
+                       print_leaf("VAR =",sym[(yyvsp[(1) - (5)])] );
+
+            level-=5;
                 } else {
                     fprintf(yyError, "\nRuntime Error: Division by zero\n");
                 }
@@ -1754,33 +1762,36 @@ yyreduce:
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 249 "1.y"
+#line 263 "1.y"
     {sym[(yyvsp[(1) - (4)])]=sym[(yyvsp[(1) - (4)])]-1;
            (yyval) = sym[(yyvsp[(1) - (4)])] ;
-           print_tree("Decrement variable");
+           print_tree("Decrement variable (--)");
             level++;
-            print_tree("VAR");
+            print_tree("VAR--");
+            level +=2 ;
             print_leaf("VAR",sym[(yyvsp[(1) - (4)])]);
-            level -= 1;;}
+            level -= 3;;}
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 257 "1.y"
-    {sym[(yyvsp[(1) - (4)])]=sym[(yyvsp[(1) - (4)])]+1;
+#line 272 "1.y"
+    {
+            sym[(yyvsp[(1) - (4)])]=sym[(yyvsp[(1) - (4)])]+1;
            (yyval) = sym[(yyvsp[(1) - (4)])] ;
-           print_tree("increment variable");
+           print_tree("increment variable (++)");
             level++;
-            print_tree("VAR");
+            print_tree("VAR++");
+            level+=2 ;
             print_leaf("VAR",sym[(yyvsp[(1) - (4)])]);
-            level -= 1;;}
+            level -= 3;;}
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 270 "1.y"
+#line 287 "1.y"
     {
             fprintf(yyout, "\nIF Condition Found\n");
                         print_tree("IF");
@@ -1788,28 +1799,31 @@ yyreduce:
               print_tree("Condition");
               level++;
               print_tree("Expression");
-              level--; // Reset after expression
+              level++; // Reset after expression
               print_tree("Body");
               level++;
               print_tree("Statements");
-              level -= 2;
             if ((yyvsp[(3) - (7)])) {
                 fprintf(yyout, "IF is TRUE: Executing Statements\n");
                 
                 (yyval) = 1; 
+                level+=2;
                 print_tree("IF Condition: TRUE");
             } else {
                 fprintf(yyout, "IF is FALSE: Skipping Statements\n");
                 (yyval) = 0; 
+                level+=2;
                 print_tree("IF Condition: FALSE");
             }
+            level -= 8;
+
           ;}
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 294 "1.y"
+#line 314 "1.y"
     {
             fprintf(yyout, "\nIF ELSE Condition Found\n");
             print_tree("IF-ELSE");
@@ -1817,23 +1831,26 @@ yyreduce:
             print_tree("Condition");
             level++;
             print_tree("Expression");
-            level--;
+            level++;
             if ((yyvsp[(3) - (11)])) { 
                 fprintf(yyout, "IF is TRUE: Executing IF Statements\n");
                 (yyval) = 1; 
+                level+=2;
                 print_tree("IF ELSE Condition: TRUE");
             } else {
                 fprintf(yyout, "ELSE is TRUE: Executing ELSE Statements\n");
                 (yyval) = 0; 
+                level+=2;
                 print_tree("IF ELSE Condition: FALSE");
             }
+            level-=7;
           ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 312 "1.y"
+#line 336 "1.y"
     {
 	                                                int i;
 	                                                fprintf(yyout,"\nWHILE Loop Found\n");
@@ -1846,6 +1863,7 @@ yyreduce:
 	                                                for(i=(yyvsp[(3) - (9)]) ; i<(yyvsp[(5) - (9)]) ; i++) 
                                                         {
                                                                 fprintf(yyout,"%dth Loop: \n", i);
+                                                                
                                                                       print_leaf("iteration num" , i);
                                                         }
                                                         level -=2 ;
@@ -1855,7 +1873,7 @@ yyreduce:
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 328 "1.y"
+#line 353 "1.y"
     {
 	                                                int i;
 	                                                fprintf(yyout,"\nWHILE Loop Found\n");
@@ -1868,7 +1886,7 @@ yyreduce:
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 335 "1.y"
+#line 360 "1.y"
     {
 	                                                int i;
 	                                                fprintf(yyout,"\nWHILE Loop Found\n");
@@ -1881,7 +1899,7 @@ yyreduce:
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 342 "1.y"
+#line 367 "1.y"
     {
 	                                                int i;
 	                                                fprintf(yyout,"\nWHILE Loop Found\n");
@@ -1894,47 +1912,75 @@ yyreduce:
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 352 "1.y"
+#line 377 "1.y"
     { 
                 (yyval) = (yyvsp[(1) - (1)]); 
                print_tree("expr");
             level++;
             print_tree("=");
+            level+=2;
             print_leaf("NUM", (yyvsp[(1) - (1)]));
-            level--;
+            level-=3;
             ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 361 "1.y"
+#line 387 "1.y"
     {                 (yyval) = sym[(yyvsp[(1) - (1)])]; 
 
-                               print_tree("expr");
+            print_tree("expr");
             level++;
             print_tree("=");
+            level+=2;
             print_leaf("VAR", sym[(yyvsp[(1) - (1)])]);
-            level--;
+            level-=3;
             ;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 370 "1.y"
+#line 397 "1.y"
     { 
                 (yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]); 
                 print_tree("Multiplication Expression");
+                level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("*");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4;
+
             ;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 375 "1.y"
-    { 
+#line 413 "1.y"
+    {
+              if ((yyvsp[(3) - (3)])) {
                 (yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]); 
+                print_tree("Division Expression");
+                level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("/");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4;               
+            } else {
+                    fprintf(yyError, "\nRuntime Error: Division by zero\n");
+                } 
                 print_tree( "Division Expression");
 
             ;}
@@ -1943,19 +1989,39 @@ yyreduce:
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 381 "1.y"
+#line 434 "1.y"
     {                 (yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]); 
-                print_tree( "Addition Expression");
+                print_tree("Addition Expression");
+                level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("+");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4;  
             ;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 385 "1.y"
+#line 448 "1.y"
     { 
                 (yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]); 
                 print_tree( "Subtraction Expression");
+               level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("-");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4;  
 
             ;}
     break;
@@ -1963,22 +2029,34 @@ yyreduce:
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 391 "1.y"
+#line 464 "1.y"
     { 
                 (yyval) = (yyvsp[(2) - (3)]); 
                 print_tree( "Parenthesized Expression");
+                level++;
+                print_leaf("(expression)" , (yyvsp[(2) - (3)]))
             ;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 396 "1.y"
+#line 471 "1.y"
     { 
                 if((yyvsp[(3) - (3)])) {
                     fprintf(yyout, "\nMOD : %d %% %d = %d\n", (yyvsp[(1) - (3)]), (yyvsp[(3) - (3)]), (yyvsp[(1) - (3)]) % (yyvsp[(3) - (3)]));
                     (yyval) = (yyvsp[(1) - (3)]) % (yyvsp[(3) - (3)]);
                     print_tree( "Modulus Expression");
+                                    level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("%%");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4; 
                 } else {
                     (yyval) = 0;
                     fprintf(yyError, "\nRuntime Error: MOD by zero\n");
@@ -1990,10 +2068,20 @@ yyreduce:
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 408 "1.y"
+#line 493 "1.y"
     { 
                 (yyval) = pow((yyvsp[(1) - (3)]), (yyvsp[(3) - (3)])); 
-                print_tree( "Exponentiation Expression");
+                print_tree( "Exponentiation Expression");           ;
+               level+=2;
+                print_leaf("Expression1",(yyvsp[(1) - (3)]));
+                level+=2;
+                print_tree("^");
+                level-=2;
+                print_leaf("Expression1",(yyvsp[(3) - (3)]));
+                level+=2;
+              print_leaf("result",(yyval));
+
+                level-=4;  
 
             ;}
     break;
@@ -2001,7 +2089,7 @@ yyreduce:
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 414 "1.y"
+#line 509 "1.y"
     { 
                 if ((yyvsp[(1) - (3)]) < (yyvsp[(3) - (3)])) {
                     (yyval) = 1; 
@@ -2016,7 +2104,7 @@ yyreduce:
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 424 "1.y"
+#line 519 "1.y"
     { 
                 if ((yyvsp[(1) - (3)]) > (yyvsp[(3) - (3)])) {
                     (yyval) = 1; 
@@ -2031,7 +2119,7 @@ yyreduce:
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 434 "1.y"
+#line 529 "1.y"
     { 
                 if ((yyvsp[(1) - (4)]) == (yyvsp[(3) - (4)])) {
                     (yyval) = 1; 
@@ -2045,7 +2133,7 @@ yyreduce:
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 443 "1.y"
+#line 538 "1.y"
     { 
                 if ((yyvsp[(1) - (4)]) != (yyvsp[(3) - (4)])) {
                     (yyval) = 1; 
@@ -2060,7 +2148,7 @@ yyreduce:
   case 43:
 
 /* Line 1455 of yacc.c  */
-#line 453 "1.y"
+#line 548 "1.y"
     { 
                 (yyval) = !(yyvsp[(2) - (2)]); 
                 print_tree( "Logical NOT Expression");
@@ -2071,9 +2159,10 @@ yyreduce:
   case 44:
 
 /* Line 1455 of yacc.c  */
-#line 459 "1.y"
+#line 554 "1.y"
     {
           (yyval) = -(yyvsp[(2) - (2)]); 
+          print_tree( "negative expression");
 
           ;}
     break;
@@ -2081,7 +2170,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 2085 "1.tab.c"
+#line 2174 "1.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2293,7 +2382,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 465 "1.y"
+#line 561 "1.y"
 
 
 void yyerror(char *s) {
@@ -2312,5 +2401,3 @@ int main(void) {
     fclose(yyError);
   return 0;
 }
-
-

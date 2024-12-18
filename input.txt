@@ -1,7 +1,8 @@
 main {
+  int aaa1;
+    int div1;
+    int div2;
 
-#declare variable
-    int aaa1;
 
 #print variable
 print(aaa1);
@@ -104,6 +105,11 @@ else
 aaa1=15 ;
 }
 
+#division by zero
+
+#div1=5;
+#div2 = div1/0;
+#print(div2);
 
 #make while loop as range of two numbers with step 1
 while (5 , 10)

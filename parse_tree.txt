@@ -1,432 +1,427 @@
- / declarations: empty
-declaration
- / int variable
- /  / =
-      Var --> 0
- / declarations: declarations declaration
- / statements empty
+ ||| declarations---> empty
+ ||| declaration -->
+               int variable   0
+ ||| declarations---> declarations declaration
+ ||| declaration -->
+               int variable   0
+ ||| declarations---> declarations declaration
+ ||| declaration -->
+               int variable   0
+ ||| declarations---> declarations declaration
+ ||| statements---> empty
 expr
- / =
-  VAR --> 0
- / Print Statement
- / statements: statements statement
+ ||| =
+               VAR  0
+ |||  ||| statement--> condition
+ ||| statements---> statements statement
 expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
+ ||| =
+               NUM  10
+ ||| assignment-- > 
+               Var =  10
+ ||| statement--> assignment
+ ||| statements---> statements statement
 expr
- / =
-  VAR --> 10
- / Print Statement
- / statements: statements statement
+ ||| =
+               VAR  10
+ |||  ||| statement--> condition
+ ||| statements---> statements statement
 expr
- / =
-  VAR --> 10
+ ||| =
+               VAR  10
 expr
- / =
-  NUM --> 10
+ ||| =
+               NUM  10
 Multiplication Expression
+          Expression1  10
+ |||  |||  |||  ||| *
+          Expression1  10
+                    result  100
 expr
- / =
-  VAR --> 10
+ ||| =
+               VAR  10
 expr
- / =
-  NUM --> 10
+ ||| =
+               NUM  10
 Addition Expression
+          Expression1  10
+ |||  |||  |||  ||| +
+          Expression1  10
+                    result  20
 Parenthesized Expression
-Multiplication Expression
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
+     (expression)  20
+ ||| Multiplication Expression
+               Expression1  100
+ |||  |||  |||  |||  ||| *
+               Expression1  20
+                         result  2000
+ |||  ||| assignment-- > 
+                    Var =  2000
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  2000
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ |||  ||| VAR *= -- > 
+                    NUM=  10
+                              VAR =  20000
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  20000
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| Decrement variable (--)
+ |||  ||| VAR--
+                    VAR  19999
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  19999
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  19999
+ ||| negative expression
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  19999
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| increment variable (++)
+ |||  ||| VAR++
+                    VAR  20000
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  20000
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    NUM  10
+ |||  ||| assignment-- > 
+                    Var =  10
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    NUM  20
+ |||  ||| assignment-- > 
+                    Var =  20
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  10
+ ||| expr
+ |||  ||| =
+                    NUM  2
+ ||| Multiplication Expression
+               Expression1  10
+ |||  |||  |||  |||  ||| *
+               Expression1  2
+                         result  20
+ ||| expr
+ |||  ||| =
+                    VAR  20
+ ||| negative expression
+ ||| Addition Expression
+               Expression1  20
+ |||  |||  |||  |||  ||| +
+               Expression1  -20
+                         result  0
+ |||  ||| assignment-- > 
+                    Var =  0
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  0
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    NUM  10
+ |||  ||| assignment-- > 
+                    Var =  10
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    NUM  20
+ |||  ||| assignment-- > 
+                    Var =  20
+ |||  ||| statement--> assignment
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  10
+ ||| expr
+ |||  ||| =
+                    VAR  20
+ ||| Equal Comparison
+ |||  |||  ||| statement--> condition
+ |||  ||| statements---> statements statement
+ ||| expr
+ |||  ||| =
+                    VAR  10
+ ||| expr
+ |||  ||| =
+                    VAR  20
+ ||| Equal Comparison
+ ||| Parenthesized Expression
+          (expression)  0
+ |||  ||| Logical NOT Expression
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  10
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  20
+ |||  ||| Not Equal Comparison
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  10
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  20
+ |||  ||| Greater Than Comparison
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  10
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  20
+ |||  ||| Less Than Comparison
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  10
+ |||  |||  ||| assignment-- > 
+                         Var =  10
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  |||  ||| VAR *= -- > 
+                         NUM=  10
+                                   VAR =  100
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  100
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  10
+ |||  |||  ||| assignment-- > 
+                         Var =  10
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  |||  ||| VAR -= -- > 
+                         NUM =  10
+                                   VAR =  0
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  0
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  10
+ |||  |||  ||| assignment-- > 
+                         Var =  10
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  |||  ||| VAR += -- > 
+                         VAR =  20
+                                   NUM =  10
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  20
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  10
+ |||  |||  ||| assignment-- > 
+                         Var =  10
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  |||  ||| VAR /= -- > 
+                         NUM=  10
+                                   VAR =  1
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  1
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  15
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  6
+ |||  ||| Modulus Expression
+                    Expression1  15
+ |||  |||  |||  |||  |||  ||| %%
+                    Expression1  6
+                              result  3
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  3
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  5
+ |||  ||| Exponentiation Expression
+                    Expression1  3
+ |||  |||  |||  |||  |||  ||| ^
+                    Expression1  5
+                              result  243
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  3
+ |||  |||  ||| assignment-- > 
+                         Var =  3
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  5
+ |||  |||  ||| assignment-- > 
+                         Var =  5
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  3
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  5
+ |||  ||| Exponentiation Expression
+                    Expression1  3
+ |||  |||  |||  |||  |||  ||| ^
+                    Expression1  5
+                              result  243
+ |||  |||  |||  ||| statement--> condition
+ |||  |||  ||| statements---> statements statement
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  3
+ |||  ||| expr
+ |||  |||  ||| =
+                         VAR  5
+ |||  ||| Greater Than Comparison
+ |||  |||  ||| statements---> empty
+ |||  ||| expr
+ |||  |||  ||| =
+                         NUM  11
+ |||  |||  ||| assignment-- > 
+                         Var =  11
+ |||  |||  ||| statement--> assignment
+ |||  |||  ||| statements---> statements statement
+ |||  ||| IF
+ |||  |||  ||| Condition
+ |||  |||  |||  ||| Expression
+ |||  |||  |||  |||  ||| Body
+ |||  |||  |||  |||  |||  ||| Statements
+ |||  |||  |||  |||  |||  |||  |||  ||| IF Condition: FALSE
+ ||| statement--> condition
+ ||| statements---> statements statement
 expr
- / =
-  VAR --> 2000
- / Print Statement
- / statements: statements statement
-Assignment
- / *=
- /  / VAR
-    NUM --> 10
- / statement--> assignment
- / statements: statements statement
+ ||| =
+               VAR  11
 expr
- / =
-  VAR --> 20000
- / Print Statement
- / statements: statements statement
-Decrement variable
- / VAR
-  VAR --> 19999
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 19999
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 19999
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 19999
- / Print Statement
- / statements: statements statement
-increment variable
- / VAR
-  VAR --> 20000
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 20000
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  NUM --> 20
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 10
-expr
- / =
-  NUM --> 2
-Multiplication Expression
-expr
- / =
-  VAR --> 20
-Addition Expression
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 0
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  NUM --> 20
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 10
-expr
- / =
-  VAR --> 20
-Equal Comparison
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 10
-expr
- / =
-  VAR --> 20
-Equal Comparison
-Parenthesized Expression
-Logical NOT Expression
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 10
-expr
- / =
-  VAR --> 20
-Not Equal Comparison
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 10
-expr
- / =
-  VAR --> 20
+ ||| =
+               VAR  5
 Greater Than Comparison
- / Print Statement
- / statements: statements statement
+ ||| statements---> empty
 expr
- / =
-  VAR --> 10
+ ||| =
+               NUM  11
+ ||| assignment-- > 
+               Var =  11
+ ||| statement--> assignment
+ ||| statements---> statements statement
+ ||| statements---> empty
 expr
- / =
-  VAR --> 20
-Less Than Comparison
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-Assignment
- / *=
- /  / VAR
-    NUM --> 10
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 100
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-Assignment
- / -=
- /  / VAR
-    NUM --> 10
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 0
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-Assignment
- / +=
- /  / VAR
-    NUM --> 10
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 20
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 10
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-Assignment
- / /=
- /  / VAR
-    NUM --> 10
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 1
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 15
-expr
- / =
-  NUM --> 6
-Modulus Expression
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 3
-expr
- / =
-  NUM --> 5
-Exponentiation Expression
- / Print Statement
- / statements: statements statement
-expr
- / =
-  NUM --> 3
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  NUM --> 5
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-expr
- / =
-  VAR --> 3
-expr
- / =
-  VAR --> 5
-Exponentiation Expression
- / Print Statement
- / statements: statements statement
-expr
- / =
-  VAR --> 3
-expr
- / =
-  VAR --> 5
-Greater Than Comparison
- / statements empty
-expr
- / =
-  NUM --> 11
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
-IF
- / Condition
- /  / Expression
- / Body
- /  / Statements
-IF Condition: FALSE
- / statement--> condition
- / statements: statements statement
-expr
- / =
-  VAR --> 11
-expr
- / =
-  VAR --> 5
-Greater Than Comparison
- / statements empty
-expr
- / =
-  NUM --> 11
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
- / statements empty
-expr
- / =
-  NUM --> 15
-Assignment
- / VAR
- / =
- / Expression
- / statement--> assignment
- / statements: statements statement
+ ||| =
+               NUM  15
+ ||| assignment-- > 
+               Var =  15
+ ||| statement--> assignment
+ ||| statements---> statements statement
 IF-ELSE
- / Condition
- /  / Expression
- / IF ELSE Condition: TRUE
- /  / statement--> condition
- /  / statements: statements statement
- / expr
- /  / =
-    NUM --> 10
- / Assignment
- /  / VAR
- /  / =
- /  / Expression
- /  / statement--> assignment
- / 
+ ||| Condition
+ |||  ||| Expression
+ |||  |||  |||  |||  ||| IF ELSE Condition: TRUE
+statement--> condition
+statements---> statements statement
+expr
+=
+     NUM  10
+assignment-- > 
+     Var =  10
+statement--> assignment
+
 WHILE Loop Found
 
- /  / ITERATIONS
-      iteration num --> 5
-      iteration num --> 6
-      iteration num --> 7
-      iteration num --> 8
-      iteration num --> 9
- /  / statement--> condition
- /  / statements: statements statement
- / expr
- /  / =
-    NUM --> 10
- / Assignment
- /  / VAR
- /  / =
- /  / Expression
- /  / statement--> assignment
- /  / statements: statements statement
- / expr
- /  / =
-    NUM --> 10
- / Assignment
- /  / VAR
- /  / =
- /  / Expression
- /  / statement--> assignment
- /  / statement--> condition
- /  / statements: statements statement
- / expr
- /  / =
-    NUM --> 10
- / Assignment
- /  / VAR
- /  / =
- /  / Expression
- /  / statement--> assignment
- /  / statement--> condition
- /  / statements: statements statement
- / Program
- /  / Main Block
+ITERATIONS
+iteration num  5
+iteration num  6
+iteration num  7
+iteration num  8
+iteration num  9
+statement--> condition
+statements---> statements statement
+expr
+=
+     NUM  10
+assignment-- > 
+     Var =  10
+statement--> assignment
+statements---> statements statement
+expr
+=
+     NUM  10
+assignment-- > 
+     Var =  10
+statement--> assignment
+statement--> condition
+statements---> statements statement
+expr
+=
+     NUM  10
+assignment-- > 
+     Var =  10
+statement--> assignment
+statement--> condition
+statements---> statements statement
+Start Program
+Main Block
